@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>SALSA Chatbot</title>
+    
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    
+
+<div class="chat">
+  <div class="chat-title">
+    <h1>SALSA Chatbot</h1>
+    <h2>India</h2>
+    <figure class="avatar">
+      <img src="images/avatar.jpeg" /></figure>
+  </div>
+  <div class="messages">
+    <div class="messages-content"></div>
+  </div>
+  <div class="message-box">
+      
+    <textarea class="message-input" id="textinput" placeholder="Type your message..."></textarea>
+    <button type="submit" class="message-submit" name="submitmsg" id="submitmsg">Send</button>
+	<table><tr><td><p style="color: rgba(255, 255, 255, 0.7);">or click the button and start speaking...</p></td><td>&nbsp;</td><td><img onclick="startDictation()" src="images/mic.png" width="20" height="25" /></td></tr></table>
+      
+  </div>
+
+</div>
+<div class="bg">
+
+</div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+
+        
+		
+		<script>
+  function startDictation() {
+ 
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+          var recognition = new webkitSpeechRecognition();
+
+          recognition.continuous = false;
+          recognition.interimResults = false;
+          recognition.lang = "en-US";
+          recognition.start();
+
+          recognition.onresult = function (e) {
+            document.getElementById('textinput').value = e.results[0][0].transcript;
+            recognition.stop();            
+          };
+          recognition.onerror = function(e) {
+            recognition.stop();
+          };
+        }
+		
+
+  }
+</script>
+<script src='js/voicerss-tts.min.js'></script>
+<script src='js/jquery.voicerss-tts.min.js'></script>
+<script src="js/index.js"></script>
+    
+    
+    
+  </body>
+</html>
